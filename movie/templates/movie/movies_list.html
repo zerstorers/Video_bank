@@ -1,0 +1,61 @@
+{%extends "base.html"%}
+{% block content %}
+{% load i18n %}
+<div class="col-12 text-center pb-3 ">
+    <div class="bg-light">
+        <p>{% trans "Changer de langue" %}</p>
+        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}">
+            <select name="language">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                    {{ language.name_local }} ({{ language.code }})
+                </option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Go">
+        </form>
+        <p>{% trans "Language utiliser: francais" %}</p>
+        
+
+    </div>
+
+
+
+</div>
+{%for Movies in object_list%}
+<div class="col-4 text-center border-left mt-5">
+    <div class="row">
+        <div class="col-12">
+            <p>Xx__{{Movies.user.username}}__xX du <span id="Movies_name">
+                </span></p>
+            <script>
+                document.getElementById("Movies_name").innerHTML = Math.floor(Math.random() * 96);
+            </script>
+        </div>
+        <div class="col-6">
+            <img class="w-100" src="https://picsum.photos/200/300" alt="">
+        </div>
+        <div class="col-6">
+            <p>Nom: {{Movies.name}}</p>
+            <p>Description: {{Movies.desciption}}</p>
+            <p>Date : {{Movies.date}}</p>
+            <p>image: {{Movies.thumb}}</p>
+            <p>Acteur: {{Movies.actors}}</p>
+            <p>Ville : {{Movies.country}}</p>
+            <p>Durée : {{Movies.length}}</p>
+            <p>Disponibilité : {{Movies.rented}}</p>
+        </div>
+        <div class="col-12">
+            <a href="{% url 'detail_movies' Movies.id %}" class="btn btn-dark rounded text-primary">Voir le
+                Movies</a>
+        </div>
+    </div>
+
+</div>
+<hr>
+{%endfor%}
+{% endblock content %}

@@ -1,0 +1,35 @@
+{%extends "base.html"%}
+{% block content %}
+
+<div class="col-12 text-center pb-3 ">
+</div>
+{%for Client in object_list%}
+<div class="col-4 text-center border-left mt-5">
+    <div class="row">
+        <div class="col-12">
+            <p>Xx__{{Client.user.username}}__xX du <span id="Client_name">
+                </span></p>
+            <script>
+                document.getElementById("Client_name").innerHTML = Math.floor(Math.random() * 96);
+            </script>
+        </div>
+        <div class="col-6">
+            <img class="w-100" src="https://picsum.photos/200/300" alt="">
+        </div>
+        <div class="col-6">
+            <p>Prénom: {{Client.user.first_name}}</p>
+            <p>Nom: {{Client.user.last_name}}</p>
+            <p>Domicile: {{Client.city}}</p>
+            <p>Mail: {{Client.user.email}}</p>
+            <p>Age: {{Client.age}}</p>
+            <p>Interet: {{Client.interet}}</p>
+        </div>
+        <div class="col-12">
+            <a href="{% url 'client_detail' Client.user.id %}" class="btn btn-dark rounded text-primary">Voir le
+                Client</a>
+        </div>
+    </div>
+
+</div>
+{%endfor%}
+{% endblock content %}

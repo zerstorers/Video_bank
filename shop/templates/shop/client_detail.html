@@ -1,0 +1,83 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<div class="container py-2">
+
+    <h2 class="text-center">Fiche client</h2>
+
+    <div class="array w-50 m-auto text-center border">
+        <div class="row no-gutters">
+            <div class="col-6 text-success border">Nom</div>
+            <div class="col-6 border">{{Client.user.last_name}}</div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-6 text-success border">Prénom</div>
+            <div class="col-6 border">{{Client.user.first_name}}</div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-6 text-success border">Téléphone</div>
+            <div class="col-6 border">{{Client.phone}}</div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-6 text-success border">Raison sociale</div>
+            <div class="col-6 border">{{Client.social_reason}}</div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-6 text-success border">Siret</div>
+            <div class="col-6 border">{{Client.siret}}</div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-6 text-success border">Numéro TVA</div>
+            <div class="col-6 border">{{Client.tva_num}}</div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-6 text-success border">Adress email</div>
+            <div class="col-6 border">{{client.user.email}}</div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-6 text-success border">Adress</div>
+            <div class="col-6 border">
+                {% for adress in client.adress.all %}
+                <p>{{adress.adress}} {{adress.postal_code}} {{adress.city}}</p>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <a href="" class="btn btn-primary">Editer</a>
+    </div>
+    <div class="text-center">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+            Supprimer <a href="{% url 'delete_client' client.user.id %}">supp</a>
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Supprimer</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Êtes-vous sûr de vouloir supprimer ce client ?
+                    </div>
+                    <div class="modal-footer">
+                        <form method="post" action="{% url 'delete_client' client.user.id %}">{% csrf_token %}
+                            <input type="submit" value="Confirm" class="btn btn-danger">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{%endblock%}

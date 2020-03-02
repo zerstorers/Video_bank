@@ -1,0 +1,35 @@
+
+{% load i18n %}
+<header class="bg-dark p-5">
+
+    <nav class="d-flex justify-content-around">
+        <div>
+            <li>
+                <a href="{% url 'userena_signup' %}">{% trans "Créé un client" %}</a>
+            </li>
+            <li>
+                <a href="{% url 'client_list' %}">Liste des clients</a>
+            </li>
+        </div>
+        <div>
+            <li>
+                <a href="{% url 'home' %}">Liste des films</a>
+            </li>
+            {% if perms.movies.add_movies %}
+            <li>
+                <a href="{% url 'create_movies' %}">Ajouter un film</a>
+            </li>
+            {% endif %}
+        </div>
+        <div>
+            <li>
+                <a href="{% url 'userena_signin' %}">Login</a>
+            </li>
+            <li>
+                <a href="{% url 'userena_signout' %}">Logout</a>
+            </li>
+        </div>
+    </nav>
+
+
+</header>

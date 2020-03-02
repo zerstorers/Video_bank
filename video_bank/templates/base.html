@@ -1,0 +1,38 @@
+{%load static%}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'bootstrap/dist/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{%static '@fortawesome/fontawesome-free/css/all.css'%}">
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <div class="container">
+        
+        {% include 'header.html' %}
+
+        <div class="row no-gutters justify-content-around">
+            {%block content%}
+
+            {%endblock content%}
+        </div>
+        {% include 'footer.html' %}
+
+    </div>
+    <script src="{%static 'bootstrap/dist/js/bootstrap.min.js'%}"></script>
+    <script src="{%static 'jquery/dist/jquery.min.js'%}"></script>
+    <script src="{%static 'popper.js/dist/popper.min.js'%}"></script>
+
+</body>
+
+</html>

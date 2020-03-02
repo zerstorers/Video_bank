@@ -1,0 +1,43 @@
+{%extends "base.html"%}
+{% block content %}
+<!-- <div class="col-12 text-center border rounded">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_ul}}
+        <input type="submit" value="Envoyer" />
+    </form>
+</div> -->
+
+
+<div class="col-12 border rounded">
+    <div class="card-body">
+        <form enctype="multipart/form-data" method="post">
+            <!-- {% csrf_token %}
+            {{profile_form.management_form}}
+            <div class="row">
+                <div class="col-6">
+                    <label for="">First name</label>
+                    <input type="text" class="form-control" value="{{object.first_name}}">
+                </div>
+                <div class="col-6">
+                    <label for="">Last Name</label>
+                    <input type="text" class="form-control" value="{{object.last_name}}">
+                </div>
+                <div class="col-12">
+                    <label for="">Email</label>
+                    <input type="email" class="form-control" value="{{object.email}}">
+                </div>
+                <div class="col-6">
+                    <label for="">Ville</label>
+                    <input type="text" class="form-control" value="{{object.city}}">
+                </div>
+            </div> -->
+            <input class="btn-outline-primary my-3" type="submit" value="Save">
+            {% csrf_token %}
+            {{movie_form.management_form}}
+            {{ form.as_ul }}
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

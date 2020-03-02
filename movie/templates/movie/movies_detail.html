@@ -1,0 +1,59 @@
+{%extends "base.html"%}
+{% block content %}
+
+
+
+<div class="col-12 text-center font-weight-bolder">
+
+            <script>
+                document.getElementById("profile_name").innerHTML = Math.floor(Math.random() * 96);
+            </script>
+        </span></p>
+    </h2>
+</div>
+
+<div class="col-6 border rounded">
+    <div class="row no-gutters">
+
+        <div class="col-6">
+            <img class="w-100" src="https://picsum.photos/200/300" alt="">
+        </div>
+        <div class="col-6">
+            <!-- object ou profile -->
+            <p>Nom: {{object.name}}</p>
+            <p>Description: {{object.desciption}}</p>
+            <p>Date : {{object.date}}</p>
+            <p>image: {{object.thumb}}</p>
+            <p>Acteur: {{object.actors}}</p>
+            <p>Ville : {{object.country}}</p>
+            <p>Durée : {{object.length}}</p>
+            <p>Disponibilité : {{object.rented}}</p>
+            <!--  -->
+        </div>
+        {% if perms.movies.change_movies %}
+        <div class="col-12 text-center mt-5">
+            <a class="btn btn-primary w-50 m-auto" style="padding : 0 ,200px; margin: 10px, 0;"
+                href="{% url 'update_movies' movies.id %}">Modifier</a>
+        </div>
+        {% endif %}
+        {% if perms.movies.delete_movies %}
+        <div class="col-12 text-center mt-3 mb-5">
+            <a class="btn btn-danger w-50 m-auto" style="padding : 0 ,200px; margin: 10px, 0;"
+                href="{% url 'delete_movies' movies.id %}">Supprimer</a>
+            </div>
+        {% endif %}
+
+        <hr>
+
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+{% endblock content %}
