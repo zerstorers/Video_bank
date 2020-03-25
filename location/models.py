@@ -6,6 +6,6 @@ from shop.models import Client
 
 class MoviesRent(models.Model):
     fk_movie = models.ForeignKey(Movies , null=True , on_delete=models.CASCADE)
-    fk_client = models.ForeignKey(Client , null=True , on_delete=models.CASCADE)
+    fk_client = models.ForeignKey(Client , null=True , on_delete=models.CASCADE, related_name = "movie_rent")
     date_out = models.DateTimeField(null=True)
-    date_return = models.DateTimeField(null=True)
+    date_return = models.DateTimeField(null=True, blank=True)

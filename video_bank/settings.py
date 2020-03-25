@@ -25,7 +25,7 @@ SECRET_KEY = 'vxtzqh1)no-$x=)=r**9!lp+8d&s*-hw6qgrqh2t6qhsk)k=qf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'userena',
     'guardian',
     'easy_thumbnails',
-    'modeltranslation',
+    'linguist',
+    'stats'
 
 ]
 
@@ -58,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'stats.middleware.SimpleMiddleware',
 ]
 
 ROOT_URLCONF = 'video_bank.urls'
@@ -77,6 +79,8 @@ TEMPLATES = [
         },
     },
 ]
+
+TEMPLATED_EMAIL_BACKEND = 'templated_email.backends.vanilla_django.TemplateBackend'
 
 WSGI_APPLICATION = 'video_bank.wsgi.application'
 
@@ -114,8 +118,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'fr-fr'
-MODELTRANSLATION_DEFAULT_LANGUAGE = 'fr'
+LANGUAGE_CODE = 'fr-Fr'
+LANGUAGES = (
+    ('fr', 'francais'),
+    ('en', 'anglais')
+)
 
 TIME_ZONE = 'UTC'
 
@@ -125,6 +132,12 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+os.path.join(BASE_DIR, "node_modules"),
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/

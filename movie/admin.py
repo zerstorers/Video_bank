@@ -11,4 +11,4 @@ class AdminRowMovies(admin.ModelAdmin):
     inlines = [AdminMovieRender]
 
 
-admin.site.register(Movies)
+admin.site.register(Movies, AdminRowMovies)
